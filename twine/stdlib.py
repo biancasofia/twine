@@ -1,28 +1,20 @@
 def eq(x, y):
-    """
-    Implementa o operador de igualdade
-    """
+   
     return x == y
 
 
 def lt(x, y):
-    """
-    Implementa o operador de "menor que"
-    """
+  
     return x < y
 
 
 def add(x, y):
-    """
-    Implementa o operador de soma
-    """
+   
     return x + y
 
 
 def sub(x, y):
-    """
-    Implementa o operador de subtração
-    """
+  
     return x - y
 
 
