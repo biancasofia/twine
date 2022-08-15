@@ -1,1 +1,51 @@
-// A gramática está vazia, por enquanto...
+start: program
+        
+        program: _lista
+
+        _lista : def | def _lista
+
+        def: IDENTIFIER "=" "f" "(" argumentos _retorno ")" principal -> define
+
+        _retorno: "returns" TYPE
+
+        ?principal: imprime_exp principal  | exp
+            
+
+        imprime_exp: "print" "(" exp ")"
+
+        argumentos: (_argumentos_f)*  -> params
+
+        _argumentos_f: wtype | wtype "," _argumentos_f
+
+
+        wtype: IDENTIFIER ":" TYPE -> param
+
+        TYPE: "integer" | "boolean" 
+
+        ?exp: exp_uni  | exp_uni "=" exp -> eq  | exp_uni "<" exp -> lt 
+    
+        ?exp_uni: simbol | simbol "|" exp_uni -> or_ | simbol "+" exp_uni -> add | simbol "-" exp_uni -> sub 
+        
+        ?simbol: cond | cond "^" simbol -> and_ | cond "*" simbol -> mul | cond "/" simbol -> div 
+    
+        ?cond: BOOLEAN | INTEGER  | "~" cond -> not | "-" cond -> neg  | IDENTIFIER | IDENTIFIER "(" argumentlist ")" -> fcall    
+                | "if" "(" exp ")" exp "else" exp
+                | "(" exp ")" 
+
+        argumentlist: (_args)* -> args 
+
+        _args: exp | exp "," _args 
+
+        IDENTIFIER: /[a-zA-Z$][a-zA-Z0-9_$]*/
+        
+        INTEGER: /0|[1-9][0-9]*/
+        
+        BOOLEAN: "true" | "false"   
+        
+        WHITESPACE: /\s/
+        
+        COMMENT: /%.*/
+
+        %ignore WHITESPACE
+
+        %ignore COMMENT
