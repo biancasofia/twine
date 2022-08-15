@@ -8,11 +8,9 @@ Env = MutableMapping[str, object]
 
 
 def optimize(ir: IR, env: Env = None) -> IR:
-    """
-    Aplica todas as técnicas de otimização conhecidas para este compilador e
-    retorna a nova IR otimizada.
-    """
-    raise NotImplementedError("otimização não foi implementada")
+## nao deu :(
+    return ir
+
 
 
 def default_env() -> Env:
